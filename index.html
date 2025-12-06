@@ -39,6 +39,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -80,39 +82,535 @@
       ]
     }
     </script>
+    
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #0d6efd;
+            --primary-dark: #0a58ca;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Modern Navbar */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95) !important;
+            transition: var(--transition);
+            padding: 1rem 0;
+        }
+        
+        .navbar.scrolled {
+            box-shadow: var(--shadow-md);
+            padding: 0.5rem 0;
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: #333 !important;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: translateX(-50%) scaleX(1);
+            width: 80%;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            font-weight: 600;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 110, 253, 0.9), rgba(10, 88, 202, 0.9)),
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop') center/cover;
+            z-index: -1;
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+        
+        @keyframes heroZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content p {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        /* Modern Buttons */
+        .btn-modern {
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-modern:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-modern:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-modern:active {
+            transform: translateY(-1px);
+        }
+        
+        /* Section Headings */
+        .section-heading {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-heading h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-heading p {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Modern Cards */
+        .modern-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .modern-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .modern-card-img {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .modern-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .modern-card:hover .modern-card-img img {
+            transform: scale(1.15);
+        }
+        
+        .modern-card-icon {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            z-index: 2;
+        }
+        
+        .modern-card:hover .modern-card-icon {
+            bottom: -30px;
+            transform: translateX(-50%) rotate(360deg) scale(1.1);
+        }
+        
+        .modern-card-body {
+            padding: 2.5rem 1.5rem 1.5rem;
+            text-align: center;
+        }
+        
+        .modern-card-body h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        
+        .modern-card-body p {
+            color: var(--secondary-color);
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        /* Project Preview Cards */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
+            background: white;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .project-card-img {
+            height: 280px;
+            overflow: hidden;
+        }
+        
+        .project-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover .project-card-img img {
+            transform: scale(1.1);
+        }
+        
+        .project-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover .project-card-overlay {
+            opacity: 1;
+        }
+        
+        .project-card-body {
+            padding: 1.5rem;
+        }
+        
+        .project-card-body h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #1a1a1a;
+        }
+        
+        .project-card-body p {
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* About Section */
+        .about-img {
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .feature-item {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+        }
+        
+        /* Contact Section */
+        .contact-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            height: 100%;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        }
+        
+        .footer-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px) scale(1.1);
+            color: white;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            animation: pulse 2s ease-in-out infinite;
+            z-index: 1000;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.15);
+            animation: none;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.4);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 70vh;
+                padding-top: 80px;
+            }
+            
+            .modern-card-body {
+                padding: 2rem 1.25rem 1.25rem;
+            }
+            
+            .section-heading {
+                margin-bottom: 2.5rem;
+            }
+        }
+    </style>
 </head>
-<body class="pt-5">
+<body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNavbar">
         <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="#"><i class="bi bi-box-seam me-2"></i>Sağlam Konteyner</a>
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-box-seam me-2"></i>Sağlam Konteyner
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menüyü aç/kapat">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link fw-medium" href="#anasayfa">Anasayfa</a></li>
-                    <li class="nav-item"><a class="nav-link fw-medium" href="#hizmetler">Hizmetlerimiz</a></li>
-                    <li class="nav-item"><a class="nav-link fw-medium" href="#hakkimizda">Hakkımızda</a></li>
-                    <li class="nav-item"><a class="nav-link fw-medium" href="#iletisim">İletişim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#anasayfa" data-section="anasayfa">Anasayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hizmetler" data-section="hizmetler">Hizmetlerimiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hakkimizda" data-section="hakkimizda">Hakkımızda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projeler.html">Projelerimiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#iletisim" data-section="iletisim">İletişim</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="anasayfa" class="position-relative text-white py-5" style="padding-top: 120px !important; min-height: 600px; display: flex; align-items: center; overflow: hidden;">
-        <!-- Banner Background Image -->
-        <div class="position-absolute top-0 start-0 w-100 h-100 animate-bg" style="background: linear-gradient(rgba(13, 110, 253, 0.8), rgba(10, 88, 202, 0.8)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop') center/cover; z-index: -1; animation: zoomIn 20s ease-in-out infinite alternate;"></div>
-        
-        <div class="container position-relative" style="z-index: 1;">
+    <section id="anasayfa" class="hero-section text-white">
+        <div class="hero-bg"></div>
+        <div class="container position-relative">
             <div class="row align-items-center">
-                <div class="col-lg-8 mx-auto text-center animate-fade-in">
-                    <h1 class="display-3 fw-bold mb-4 text-shadow animate-slide-up" style="animation-delay: 0.2s;">Prefabrik Konteyner Çözümleriniz İçin Yanınızdayız!</h1>
-                    <p class="lead fs-4 mb-4 text-shadow animate-slide-up" style="animation-delay: 0.4s;">Ofis, şantiye, yatakhane ve yaşam konteynerleri. Alım satım, tamir ve nakliye hizmetlerimizle ihtiyacınıza uygun çözümler sunuyoruz.</p>
-                    <div class="animate-slide-up" style="animation-delay: 0.6s;">
-                        <a href="#hizmetler" class="btn btn-light btn-lg rounded-pill px-5 me-2 mb-2 shadow animate-pulse-hover">Hizmetlerimizi İncele</a>
-                        <a href="#iletisim" class="btn btn-outline-light btn-lg rounded-pill px-5 mb-2 shadow animate-pulse-hover">Hemen İletişime Geç</a>
+                <div class="col-lg-10 mx-auto text-center">
+                    <div class="hero-content fade-in-up">
+                        <h1>Prefabrik Konteyner Çözümleriniz İçin Yanınızdayız!</h1>
+                        <p class="mb-4">Ofis, şantiye, yatakhane ve yaşam konteynerleri. Alım satım, tamir ve nakliye hizmetlerimizle ihtiyacınıza uygun çözümler sunuyoruz.</p>
+                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                            <a href="#hizmetler" class="btn btn-light btn-modern">
+                                <i class="bi bi-arrow-down-circle me-2"></i>Hizmetlerimizi İncele
+                            </a>
+                            <a href="#iletisim" class="btn btn-outline-light btn-modern">
+                                <i class="bi bi-telephone me-2"></i>Hemen İletişime Geç
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,110 +618,100 @@
     </section>
 
     <!-- Services Section -->
-    <section id="hizmetler" class="py-5">
-        <div class="container">
-            <h2 class="text-center display-4 fw-bold mb-3">Hizmetlerimiz</h2>
-            <p class="text-center text-muted fs-5 mb-5">Prefabrik konteyner ihtiyaçlarınız için geniş hizmet yelpazemiz</p>
+    <section id="hizmetler" class="py-5" style="background: #f8f9fa;">
+        <div class="container py-5">
+            <div class="section-heading fade-in-up">
+                <h2>Hizmetlerimiz</h2>
+                <p>Prefabrik konteyner ihtiyaçlarınız için geniş hizmet yelpazemiz</p>
+            </div>
             
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
-                    <article class="card h-100 border shadow-sm animate-card" style="transition: all 0.3s ease; overflow: hidden;">
-                        <div class="position-relative" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&h=250&fit=crop" alt="Prefabrik Konteyner Alım Satım - Ofis ve Şantiye Konteynerleri" class="card-img-top animate-img-zoom" style="height: 200px; object-fit: cover; transition: transform 0.5s ease;" loading="lazy">
-                            <div class="position-absolute top-100 start-50 translate-middle">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center animate-icon-rotate" style="width: 80px; height: 80px; transition: transform 0.3s ease;">
-                                    <i class="bi bi-cart-check fs-2"></i>
-                                </div>
+                    <article class="modern-card fade-in-up">
+                        <div class="modern-card-img">
+                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&h=400&fit=crop" alt="Prefabrik Konteyner Alım Satım" loading="lazy">
+                            <div class="modern-card-icon">
+                                <i class="bi bi-cart-check"></i>
                             </div>
                         </div>
-                        <div class="card-body text-center pt-5">
-                            <h3 class="card-title fw-bold mb-3">Konteyner Alım Satım</h3>
-                            <p class="card-text text-muted">Yeni ve ikinci el prefabrik konteyner alım satım. Ofis konteyner, şantiye konteyner, yaşam konteynerleri. Standart ve özel ölçülerde çözümler.</p>
+                        <div class="modern-card-body">
+                            <h3>Konteyner Alım Satım</h3>
+                            <p>Yeni ve ikinci el prefabrik konteyner alım satım. Ofis konteyner, şantiye konteyner, yaşam konteynerleri. Standart ve özel ölçülerde çözümler.</p>
                         </div>
                     </article>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <article class="card h-100 border shadow-sm animate-card" style="transition: all 0.3s ease; overflow: hidden;">
-                        <div class="position-relative" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=250&fit=crop" alt="Konteyner Tamir ve Bakım Hizmetleri" class="card-img-top animate-img-zoom" style="height: 200px; object-fit: cover; transition: transform 0.5s ease;" loading="lazy">
-                            <div class="position-absolute top-100 start-50 translate-middle">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center animate-icon-rotate" style="width: 80px; height: 80px; transition: transform 0.3s ease;">
-                                    <i class="bi bi-tools fs-2"></i>
-                                </div>
+                    <article class="modern-card fade-in-up">
+                        <div class="modern-card-img">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop" alt="Konteyner Tamir ve Bakım" loading="lazy">
+                            <div class="modern-card-icon">
+                                <i class="bi bi-tools"></i>
                             </div>
                         </div>
-                        <div class="card-body text-center pt-5">
-                            <h3 class="card-title fw-bold mb-3">Konteyner Tamiri</h3>
-                            <p class="card-text text-muted">Prefabrik konteyner tamir ve bakım hizmetleri. Hasarlı konteynerleriniz için profesyonel onarım. Boyama, izolasyon ve yenileme işlemleri.</p>
+                        <div class="modern-card-body">
+                            <h3>Konteyner Tamiri</h3>
+                            <p>Prefabrik konteyner tamir ve bakım hizmetleri. Hasarlı konteynerleriniz için profesyonel onarım. Boyama, izolasyon ve yenileme işlemleri.</p>
                         </div>
                     </article>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <article class="card h-100 border shadow-sm animate-card" style="transition: all 0.3s ease; overflow: hidden;">
-                        <div class="position-relative" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop" alt="Konteyner Nakliye ve Taşıma Hizmetleri" class="card-img-top animate-img-zoom" style="height: 200px; object-fit: cover; transition: transform 0.5s ease;" loading="lazy">
-                            <div class="position-absolute top-100 start-50 translate-middle">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center animate-icon-rotate" style="width: 80px; height: 80px; transition: transform 0.3s ease;">
-                                    <i class="bi bi-truck fs-2"></i>
-                                </div>
+                    <article class="modern-card fade-in-up">
+                        <div class="modern-card-img">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="Konteyner Nakliye" loading="lazy">
+                            <div class="modern-card-icon">
+                                <i class="bi bi-truck"></i>
                             </div>
                         </div>
-                        <div class="card-body text-center pt-5">
-                            <h3 class="card-title fw-bold mb-3">Konteyner Nakliyesi</h3>
-                            <p class="card-text text-muted">Güvenli ve hızlı konteyner nakliye hizmetleri. Türkiye genelinde prefabrik konteyner taşıma. Özel ekipmanlarımız ile hasarsız teslimat.</p>
+                        <div class="modern-card-body">
+                            <h3>Konteyner Nakliyesi</h3>
+                            <p>Güvenli ve hızlı konteyner nakliye hizmetleri. Türkiye genelinde prefabrik konteyner taşıma. Özel ekipmanlarımız ile hasarsız teslimat.</p>
                         </div>
                     </article>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <article class="card h-100 border shadow-sm animate-card" style="transition: all 0.3s ease; overflow: hidden;">
-                        <div class="position-relative" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop" alt="Yaşam Konteynerleri - Prefabrik Ev ve Ofis Konteynerleri" class="card-img-top animate-img-zoom" style="height: 200px; object-fit: cover; transition: transform 0.5s ease;" loading="lazy">
-                            <div class="position-absolute top-100 start-50 translate-middle">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center animate-icon-rotate" style="width: 80px; height: 80px; transition: transform 0.3s ease;">
-                                    <i class="bi bi-house-door fs-2"></i>
-                                </div>
+                    <article class="modern-card fade-in-up">
+                        <div class="modern-card-img">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop" alt="Yaşam Konteynerleri" loading="lazy">
+                            <div class="modern-card-icon">
+                                <i class="bi bi-house-door"></i>
                             </div>
                         </div>
-                        <div class="card-body text-center pt-5">
-                            <h3 class="card-title fw-bold mb-3">Yaşam Konteynerleri</h3>
-                            <p class="card-text text-muted">Prefabrik ev, ofis, yatakhane, yemekhane konteynerleri. İzolasyonlu, modern ve konforlu yaşam alanları. Özel tasarım çözümler.</p>
+                        <div class="modern-card-body">
+                            <h3>Yaşam Konteynerleri</h3>
+                            <p>Prefabrik ev, ofis, yatakhane, yemekhane konteynerleri. İzolasyonlu, modern ve konforlu yaşam alanları. Özel tasarım çözümler.</p>
                         </div>
                     </article>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <article class="card h-100 border shadow-sm animate-card" style="transition: all 0.3s ease; overflow: hidden;">
-                        <div class="position-relative" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=250&fit=crop" alt="Şantiye Konteynerleri - İnşaat ve Proje Konteynerleri" class="card-img-top animate-img-zoom" style="height: 200px; object-fit: cover; transition: transform 0.5s ease;" loading="lazy">
-                            <div class="position-absolute top-100 start-50 translate-middle">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center animate-icon-rotate" style="width: 80px; height: 80px; transition: transform 0.3s ease;">
-                                    <i class="bi bi-building fs-2"></i>
-                                </div>
+                    <article class="modern-card fade-in-up">
+                        <div class="modern-card-img">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop" alt="Şantiye Konteynerleri" loading="lazy">
+                            <div class="modern-card-icon">
+                                <i class="bi bi-building"></i>
                             </div>
                         </div>
-                        <div class="card-body text-center pt-5">
-                            <h3 class="card-title fw-bold mb-3">Şantiye Konteynerleri</h3>
-                            <p class="card-text text-muted">İnşaat şantiyeleri için ofis, yatakhane, yemekhane konteynerleri. Hızlı kurulum, dayanıklı yapı. Projeleriniz için ideal çözümler.</p>
+                        <div class="modern-card-body">
+                            <h3>Şantiye Konteynerleri</h3>
+                            <p>İnşaat şantiyeleri için ofis, yatakhane, yemekhane konteynerleri. Hızlı kurulum, dayanıklı yapı. Projeleriniz için ideal çözümler.</p>
                         </div>
                     </article>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <article class="card h-100 border shadow-sm animate-card" style="transition: all 0.3s ease; overflow: hidden;">
-                        <div class="position-relative" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=250&fit=crop" alt="Konteyner Kiralama Hizmetleri" class="card-img-top animate-img-zoom" style="height: 200px; object-fit: cover; transition: transform 0.5s ease;" loading="lazy">
-                            <div class="position-absolute top-100 start-50 translate-middle">
-                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center animate-icon-rotate" style="width: 80px; height: 80px; transition: transform 0.3s ease;">
-                                    <i class="bi bi-calendar-check fs-2"></i>
-                                </div>
+                    <article class="modern-card fade-in-up">
+                        <div class="modern-card-img">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop" alt="Konteyner Kiralama" loading="lazy">
+                            <div class="modern-card-icon">
+                                <i class="bi bi-calendar-check"></i>
                             </div>
                         </div>
-                        <div class="card-body text-center pt-5">
-                            <h3 class="card-title fw-bold mb-3">Konteyner Kiralama</h3>
-                            <p class="card-text text-muted">Kısa ve uzun vadeli konteyner kiralama hizmetleri. Ofis, şantiye ve depolama konteynerleri. Esnek kiralama seçenekleri.</p>
+                        <div class="modern-card-body">
+                            <h3>Konteyner Kiralama</h3>
+                            <p>Kısa ve uzun vadeli konteyner kiralama hizmetleri. Ofis, şantiye ve depolama konteynerleri. Esnek kiralama seçenekleri.</p>
                         </div>
                     </article>
                 </div>
@@ -232,59 +720,73 @@
     </section>
 
     <!-- About Section -->
-    <section id="hakkimizda" class="py-5 bg-light">
-        <div class="container">
+    <section id="hakkimizda" class="py-5">
+        <div class="container py-5">
             <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop" alt="Sağlam Konteyner Hakkında - Prefabrik Konteyner Üretimi" class="img-fluid rounded shadow" loading="lazy">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="about-img fade-in-up">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop" alt="Sağlam Konteyner Hakkında" loading="lazy">
+                    </div>
                 </div>
                 <div class="col-lg-6">
-                    <h2 class="display-4 fw-bold mb-4">Hakkımızda</h2>
-                    <p class="text-muted mb-3">Sağlam Konteyner olarak, prefabrik konteyner sektöründe yılların deneyimi ile müşterilerimize en kaliteli hizmeti sunmayı hedefliyoruz. Ofis konteyner, şantiye konteyner, yaşam konteynerleri alım satım, tamir ve nakliye alanlarında uzman ekibimizle hizmet vermekteyiz.</p>
-                    <p class="text-muted mb-4">Müşteri memnuniyetini ön planda tutarak, güvenilir, hızlı ve ekonomik prefabrik konteyner çözümleri sunuyoruz. İstanbul ve Türkiye genelinde hizmet veriyoruz.</p>
+                    <h2 class="display-4 fw-bold mb-4 fade-in-up">Hakkımızda</h2>
+                    <p class="text-muted mb-4 fade-in-up" style="font-size: 1.1rem; line-height: 1.8;">
+                        Sağlam Konteyner olarak, prefabrik konteyner sektöründe yılların deneyimi ile müşterilerimize en kaliteli hizmeti sunmayı hedefliyoruz. Ofis konteyner, şantiye konteyner, yaşam konteynerleri alım satım, tamir ve nakliye alanlarında uzman ekibimizle hizmet vermekteyiz.
+                    </p>
+                    <p class="text-muted mb-5 fade-in-up" style="font-size: 1.1rem; line-height: 1.8;">
+                        Müşteri memnuniyetini ön planda tutarak, güvenilir, hızlı ve ekonomik prefabrik konteyner çözümleri sunuyoruz. İstanbul ve Türkiye genelinde hizmet veriyoruz.
+                    </p>
                     
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex align-items-start">
-                                <div class="bg-primary text-white rounded p-2 me-3">
-                                    <i class="bi bi-check-circle fs-4"></i>
-                                </div>
-                                <div>
-                                    <h5 class="fw-bold">Kaliteli Ürünler</h5>
-                                    <p class="small text-muted mb-0">Standart ve özel ölçülerde kaliteli prefabrik konteynerler</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex align-items-start">
-                                <div class="bg-primary text-white rounded p-2 me-3">
-                                    <i class="bi bi-clock-history fs-4"></i>
-                                </div>
-                                <div>
-                                    <h5 class="fw-bold">Hızlı Hizmet</h5>
-                                    <p class="small text-muted mb-0">Kısa sürede teslimat ve tamir hizmetleri</p>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="feature-item fade-in-up">
+                                <div class="d-flex align-items-start">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-check-circle"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">Kaliteli Ürünler</h5>
+                                        <p class="small text-muted mb-0">Standart ve özel ölçülerde kaliteli prefabrik konteynerler</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex align-items-start">
-                                <div class="bg-primary text-white rounded p-2 me-3">
-                                    <i class="bi bi-shield-check fs-4"></i>
-                                </div>
-                                <div>
-                                    <h5 class="fw-bold">Güvenilir Çözümler</h5>
-                                    <p class="small text-muted mb-0">Garantili ve güvenilir hizmet garantisi</p>
+                        <div class="col-md-6">
+                            <div class="feature-item fade-in-up">
+                                <div class="d-flex align-items-start">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-clock-history"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">Hızlı Hizmet</h5>
+                                        <p class="small text-muted mb-0">Kısa sürede teslimat ve tamir hizmetleri</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="d-flex align-items-start">
-                                <div class="bg-primary text-white rounded p-2 me-3">
-                                    <i class="bi bi-people fs-4"></i>
+                        <div class="col-md-6">
+                            <div class="feature-item fade-in-up">
+                                <div class="d-flex align-items-start">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-shield-check"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">Güvenilir Çözümler</h5>
+                                        <p class="small text-muted mb-0">Garantili ve güvenilir hizmet garantisi</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h5 class="fw-bold">Uzman Ekip</h5>
-                                    <p class="small text-muted mb-0">Deneyimli ve profesyonel çalışan kadrosu</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-item fade-in-up">
+                                <div class="d-flex align-items-start">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-2">Uzman Ekip</h5>
+                                        <p class="small text-muted mb-0">Deneyimli ve profesyonel çalışan kadrosu</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -294,101 +796,78 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="text-center display-4 fw-bold mb-3 section-title">Projelerimiz</h2>
-            <p class="text-center text-muted fs-5 mb-5">Gerçekleştirdiğimiz başarılı prefabrik konteyner projeleri</p>
+    <!-- Projects Preview Section -->
+    <section class="py-5" style="background: #f8f9fa;">
+        <div class="container py-5">
+            <div class="section-heading fade-in-up">
+                <h2>Projelerimiz</h2>
+                <p>Gerçekleştirdiğimiz başarılı prefabrik konteyner projeleri</p>
+            </div>
             
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border shadow-sm animate-card" style="overflow: hidden;">
-                        <div class="gallery-item" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop" alt="Prefabrik Ofis Konteyner Projesi" class="card-img-top w-100" style="height: 250px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;" loading="lazy">
+                    <article class="project-card fade-in-up">
+                        <div class="project-card-img">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop" alt="Prefabrik Ofis Konteyner Projesi" loading="lazy">
+                            <div class="project-card-overlay"></div>
                         </div>
-                        <div class="card-body">
-                            <h4 class="card-title fw-bold mb-2">Prefabrik Ofis Konteyner Projesi</h4>
-                            <p class="card-text text-muted small mb-0">Modern ve konforlu ofis konteyner projesi. İzolasyonlu, elektrik tesisatlı ve hazır kullanıma uygun ofis çözümü. İstanbul'da gerçekleştirilen başarılı proje.</p>
+                        <div class="project-card-body">
+                            <h4>Prefabrik Ofis Konteyner Projesi</h4>
+                            <p>Modern ve konforlu ofis konteyner projesi. İzolasyonlu, elektrik tesisatlı ve hazır kullanıma uygun ofis çözümü.</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border shadow-sm animate-card" style="overflow: hidden;">
-                        <div class="gallery-item" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&h=300&fit=crop" alt="Şantiye Konteyner Projesi" class="card-img-top w-100" style="height: 250px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;" loading="lazy">
+                    <article class="project-card fade-in-up">
+                        <div class="project-card-img">
+                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&h=400&fit=crop" alt="Şantiye Konteyner Projesi" loading="lazy">
+                            <div class="project-card-overlay"></div>
                         </div>
-                        <div class="card-body">
-                            <h4 class="card-title fw-bold mb-2">Şantiye Konteyner Projesi</h4>
-                            <p class="card-text text-muted small mb-0">Büyük ölçekli inşaat şantiyesi için ofis ve yatakhane konteynerleri. 50+ kişilik kapasiteli, hızlı kurulumlu şantiye çözümü. Dayanıklı ve güvenli yapı.</p>
+                        <div class="project-card-body">
+                            <h4>Şantiye Konteyner Projesi</h4>
+                            <p>Büyük ölçekli inşaat şantiyesi için ofis ve yatakhane konteynerleri. 50+ kişilik kapasiteli, hızlı kurulumlu şantiye çözümü.</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border shadow-sm animate-card" style="overflow: hidden;">
-                        <div class="gallery-item" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop" alt="Yaşam Konteyner Projesi" class="card-img-top w-100" style="height: 250px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;" loading="lazy">
+                    <article class="project-card fade-in-up">
+                        <div class="project-card-img">
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop" alt="Yaşam Konteyner Projesi" loading="lazy">
+                            <div class="project-card-overlay"></div>
                         </div>
-                        <div class="card-body">
-                            <h4 class="card-title fw-bold mb-2">Yaşam Konteyner Projesi</h4>
-                            <p class="card-text text-muted small mb-0">Bağ evi olarak kullanılan prefabrik yaşam konteyneri. 2+1 oda, mutfak ve banyo içeren konforlu yaşam alanı. Doğa ile iç içe yaşam çözümü.</p>
+                        <div class="project-card-body">
+                            <h4>Yaşam Konteyner Projesi</h4>
+                            <p>Bağ evi olarak kullanılan prefabrik yaşam konteyneri. 2+1 oda, mutfak ve banyo içeren konforlu yaşam alanı.</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
-                
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border shadow-sm animate-card" style="overflow: hidden;">
-                        <div class="gallery-item" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop" alt="Prefabrik Konteyner Yatakhane Projesi" class="card-img-top w-100" style="height: 250px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;" loading="lazy">
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title fw-bold mb-2">Yatakhane Konteyner Projesi</h4>
-                            <p class="card-text text-muted small mb-0">İşçi yatakhanesi olarak kullanılan prefabrik konteyner projesi. 20 yatak kapasiteli, modern ve hijyenik yatakhane çözümü. Hızlı teslimat.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border shadow-sm animate-card" style="overflow: hidden;">
-                        <div class="gallery-item" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop" alt="Konteyner Tamir ve Yenileme Projesi" class="card-img-top w-100" style="height: 250px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;" loading="lazy">
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title fw-bold mb-2">Konteyner Tamir ve Yenileme</h4>
-                            <p class="card-text text-muted small mb-0">Hasarlı konteynerlerin profesyonel tamiri ve yenileme işlemi. Boyama, izolasyon ve elektrik tesisatı yenileme. Yeni gibi görünüm.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border shadow-sm animate-card" style="overflow: hidden;">
-                        <div class="gallery-item" style="overflow: hidden;">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Konteyner Nakliye ve Kurulum Projesi" class="card-img-top w-100" style="height: 250px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;" loading="lazy">
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title fw-bold mb-2">Nakliye ve Kurulum Projesi</h4>
-                            <p class="card-text text-muted small mb-0">Türkiye genelinde konteyner nakliye ve kurulum hizmeti. Güvenli taşıma, profesyonel montaj. Hasarsız teslimat garantisi ile hızlı çözüm.</p>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            
+            <div class="text-center mt-5 fade-in-up">
+                <a href="projeler.html" class="btn btn-primary btn-modern">
+                    <i class="bi bi-images me-2"></i>Tüm Projeleri Görüntüle
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="iletisim" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center display-4 fw-bold mb-3">İletişim</h2>
-            <p class="text-center text-muted fs-5 mb-5">Bize ulaşın, prefabrik konteyner ihtiyaçlarınız için size en uygun çözümü birlikte bulalım</p>
+    <section id="iletisim" class="py-5">
+        <div class="container py-5">
+            <div class="section-heading fade-in-up">
+                <h2>İletişim</h2>
+                <p>Bize ulaşın, prefabrik konteyner ihtiyaçlarınız için size en uygun çözümü birlikte bulalım</p>
+            </div>
             
-            <div class="row g-4 mb-4">
-                <div class="col-lg-4">
-                    <div class="bg-white p-4 rounded shadow-sm h-100">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="contact-card fade-in-up">
                         <h4 class="fw-bold mb-4">İletişim Bilgileri</h4>
                         
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="bg-primary text-white rounded p-2 me-3">
+                        <div class="contact-item">
+                            <div class="contact-icon">
                                 <i class="bi bi-geo-alt"></i>
                             </div>
                             <div>
@@ -397,93 +876,45 @@
                             </div>
                         </div>
                         
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="bg-primary text-white rounded p-2 me-3">
+                        <div class="contact-item">
+                            <div class="contact-icon">
                                 <i class="bi bi-telephone"></i>
                             </div>
                             <div>
                                 <h5 class="fw-bold mb-2">Telefon</h5>
                                 <p class="text-muted mb-0">
-                                    <a href="tel:+902121234567" class="text-decoration-none text-primary">+90 (212) 123 45 67</a><br>
-                                    <a href="tel:+905551234567" class="text-decoration-none text-primary">+90 (555) 123 45 67</a>
+                                    <a href="tel:+902121234567" class="text-decoration-none" style="color: var(--primary-color);">+90 (212) 123 45 67</a><br>
+                                    <a href="tel:+905551234567" class="text-decoration-none" style="color: var(--primary-color);">+90 (555) 123 45 67</a>
                                 </p>
                             </div>
                         </div>
                         
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="bg-primary text-white rounded p-2 me-3">
+                        <div class="contact-item">
+                            <div class="contact-icon">
                                 <i class="bi bi-envelope"></i>
                             </div>
                             <div>
                                 <h5 class="fw-bold mb-2">E-posta</h5>
                                 <p class="text-muted mb-0">
-                                    <a href="mailto:info@saglamkonteyner.com" class="text-decoration-none text-primary">info@saglamkonteyner.com</a>
+                                    <a href="mailto:info@saglamkonteyner.com" class="text-decoration-none" style="color: var(--primary-color);">info@saglamkonteyner.com</a>
                                 </p>
                             </div>
                         </div>
                         
-                        <div class="d-flex align-items-start">
-                            <div class="bg-primary text-white rounded p-2 me-3">
+                        <div class="contact-item mb-0">
+                            <div class="contact-icon">
                                 <i class="bi bi-clock"></i>
                             </div>
                             <div>
                                 <h5 class="fw-bold mb-2">Çalışma Saatleri</h5>
-                                <p class="text-muted mb-0">Pazartesi - Cuma: 09:00 - 18:00<br>
-                                Cumartesi: 09:00 - 14:00</p>
+                                <p class="text-muted mb-0">Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 14:00</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="col-lg-8">
-                    <div class="bg-white p-4 rounded shadow-sm">
-                        <h4 class="fw-bold mb-4">Bize Mesaj Gönderin</h4>
-                        <form id="contactForm">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="name" class="form-label fw-medium">Adınız Soyadınız *</label>
-                                    <input type="text" class="form-control" id="name" required aria-required="true">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="phone" class="form-label fw-medium">Telefon Numaranız *</label>
-                                    <input type="tel" class="form-control" id="phone" required aria-required="true">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label fw-medium">E-posta Adresiniz *</label>
-                                    <input type="email" class="form-control" id="email" required aria-required="true">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="service" class="form-label fw-medium">Hizmet Türü</label>
-                                    <select class="form-select" id="service">
-                                        <option value="">Seçiniz</option>
-                                        <option value="alim-satim">Konteyner Alım Satım</option>
-                                        <option value="tamir">Konteyner Tamiri</option>
-                                        <option value="nakliye">Konteyner Nakliyesi</option>
-                                        <option value="yasam">Yaşam Konteynerleri</option>
-                                        <option value="santiye">Şantiye Konteynerleri</option>
-                                        <option value="kiralama">Konteyner Kiralama</option>
-                                        <option value="diger">Diğer</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label fw-medium">Mesajınız *</label>
-                                <textarea class="form-control" id="message" rows="5" required aria-required="true"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5">
-                                <i class="bi bi-send me-2"></i>Mesaj Gönder
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Google Maps -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="bg-white p-0 rounded shadow-sm overflow-hidden">
+                <div class="col-lg-6">
+                    <div class="contact-card p-0 overflow-hidden fade-in-up" style="border-radius: var(--border-radius);">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.7499999999995!2d28.9784!3d41.0082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDAwJzI5LjUiTiAyOMKwNTgnNDIuMiJF!5e0!3m2!1str!2str!4v1234567890123!5m2!1str!2str" 
                             width="100%" 
@@ -501,30 +932,30 @@
     </section>
 
     <!-- Footer -->
-    <footer class="text-white py-5" style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);">
+    <footer class="text-white py-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h5 class="fw-bold mb-3">
+                    <h5 class="fw-bold mb-3" style="font-size: 1.5rem;">
                         <i class="bi bi-box-seam me-2"></i>Sağlam Konteyner
                     </h5>
-                    <p class="mb-3" style="opacity: 0.9; line-height: 1.8;">
+                    <p class="mb-4" style="opacity: 0.9; line-height: 1.8; font-size: 1rem;">
                         Prefabrik konteyner, ofis konteyner, şantiye konteyner alım satım, tamir ve nakliye hizmetlerinde güvenilir çözüm ortağınız.
                     </p>
-                    <div class="d-flex gap-2">
-                        <a href="#" class="text-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none footer-social" style="width: 42px; height: 42px; background: rgba(255,255,255,0.2); transition: all 0.3s ease;" aria-label="Facebook" onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
+                    <div class="d-flex gap-3">
+                        <a href="#" class="social-icon" aria-label="Facebook">
                             <i class="bi bi-facebook"></i>
                         </a>
-                        <a href="#" class="text-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none footer-social" style="width: 42px; height: 42px; background: rgba(255,255,255,0.2); transition: all 0.3s ease;" aria-label="Instagram" onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
+                        <a href="#" class="social-icon" aria-label="Instagram">
                             <i class="bi bi-instagram"></i>
                         </a>
-                        <a href="#" class="text-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none footer-social" style="width: 42px; height: 42px; background: rgba(255,255,255,0.2); transition: all 0.3s ease;" aria-label="Twitter" onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
+                        <a href="#" class="social-icon" aria-label="Twitter">
                             <i class="bi bi-twitter"></i>
                         </a>
-                        <a href="#" class="text-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none footer-social" style="width: 42px; height: 42px; background: rgba(255,255,255,0.2); transition: all 0.3s ease;" aria-label="LinkedIn" onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
+                        <a href="#" class="social-icon" aria-label="LinkedIn">
                             <i class="bi bi-linkedin"></i>
                         </a>
-                        <a href="#" class="text-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none footer-social" style="width: 42px; height: 42px; background: rgba(255,255,255,0.2); transition: all 0.3s ease;" aria-label="WhatsApp" onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
+                        <a href="#" class="social-icon" aria-label="WhatsApp">
                             <i class="bi bi-whatsapp"></i>
                         </a>
                     </div>
@@ -534,22 +965,27 @@
                     <h5 class="fw-bold mb-3">Hızlı Linkler</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2">
-                            <a href="#anasayfa" class="text-white text-decoration-none d-block" style="opacity: 0.9; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.paddingLeft='8px'" onmouseout="this.style.opacity='0.9'; this.style.paddingLeft='0'">
+                            <a href="#anasayfa" class="footer-link">
                                 <i class="bi bi-chevron-right me-2 small"></i>Anasayfa
                             </a>
                         </li>
                         <li class="mb-2">
-                            <a href="#hizmetler" class="text-white text-decoration-none d-block" style="opacity: 0.9; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.paddingLeft='8px'" onmouseout="this.style.opacity='0.9'; this.style.paddingLeft='0'">
+                            <a href="#hizmetler" class="footer-link">
                                 <i class="bi bi-chevron-right me-2 small"></i>Hizmetlerimiz
                             </a>
                         </li>
                         <li class="mb-2">
-                            <a href="#hakkimizda" class="text-white text-decoration-none d-block" style="opacity: 0.9; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.paddingLeft='8px'" onmouseout="this.style.opacity='0.9'; this.style.paddingLeft='0'">
+                            <a href="#hakkimizda" class="footer-link">
                                 <i class="bi bi-chevron-right me-2 small"></i>Hakkımızda
                             </a>
                         </li>
                         <li class="mb-2">
-                            <a href="#iletisim" class="text-white text-decoration-none d-block" style="opacity: 0.9; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.paddingLeft='8px'" onmouseout="this.style.opacity='0.9'; this.style.paddingLeft='0'">
+                            <a href="projeler.html" class="footer-link">
+                                <i class="bi bi-chevron-right me-2 small"></i>Projelerimiz
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#iletisim" class="footer-link">
                                 <i class="bi bi-chevron-right me-2 small"></i>İletişim
                             </a>
                         </li>
@@ -560,34 +996,22 @@
                     <h5 class="fw-bold mb-3">Hizmetlerimiz</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2">
-                            <a href="#hizmetler" class="text-white text-decoration-none d-block" style="opacity: 0.9; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.paddingLeft='8px'" onmouseout="this.style.opacity='0.9'; this.style.paddingLeft='0'">
-                                <i class="bi bi-chevron-right me-2 small"></i>Konteyner Alım Satım
-                            </a>
+                            <a href="#hizmetler" class="footer-link">Konteyner Alım Satım</a>
                         </li>
                         <li class="mb-2">
-                            <a href="#hizmetler" class="text-white text-decoration-none d-block" style="opacity: 0.9; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.paddingLeft='8px'" onmouseout="this.style.opacity='0.9'; this.style.paddingLeft='0'">
-                                <i class="bi bi-chevron-right me-2 small"></i>Konteyner Tamiri
-                            </a>
+                            <a href="#hizmetler" class="footer-link">Konteyner Tamiri</a>
                         </li>
                         <li class="mb-2">
-                            <a href="#hizmetler" class="text-white text-decoration-none d-block" style="opacity: 0.9; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.paddingLeft='8px'" onmouseout="this.style.opacity='0.9'; this.style.paddingLeft='0'">
-                                <i class="bi bi-chevron-right me-2 small"></i>Konteyner Nakliyesi
-                            </a>
+                            <a href="#hizmetler" class="footer-link">Konteyner Nakliyesi</a>
                         </li>
                         <li class="mb-2">
-                            <a href="#hizmetler" class="text-white text-decoration-none d-block" style="opacity: 0.9; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.paddingLeft='8px'" onmouseout="this.style.opacity='0.9'; this.style.paddingLeft='0'">
-                                <i class="bi bi-chevron-right me-2 small"></i>Yaşam Konteynerleri
-                            </a>
+                            <a href="#hizmetler" class="footer-link">Yaşam Konteynerleri</a>
                         </li>
                         <li class="mb-2">
-                            <a href="#hizmetler" class="text-white text-decoration-none d-block" style="opacity: 0.9; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.paddingLeft='8px'" onmouseout="this.style.opacity='0.9'; this.style.paddingLeft='0'">
-                                <i class="bi bi-chevron-right me-2 small"></i>Şantiye Konteynerleri
-                            </a>
+                            <a href="#hizmetler" class="footer-link">Şantiye Konteynerleri</a>
                         </li>
                         <li class="mb-2">
-                            <a href="#hizmetler" class="text-white text-decoration-none d-block" style="opacity: 0.9; transition: all 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.paddingLeft='8px'" onmouseout="this.style.opacity='0.9'; this.style.paddingLeft='0'">
-                                <i class="bi bi-chevron-right me-2 small"></i>Konteyner Kiralama
-                            </a>
+                            <a href="#hizmetler" class="footer-link">Konteyner Kiralama</a>
                         </li>
                     </ul>
                 </div>
@@ -603,148 +1027,154 @@
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/905551234567?text=Merhaba,%20prefabrik%20konteyner%20hakkında%20bilgi%20almak%20istiyorum." 
-       class="position-fixed bottom-0 end-0 m-4 bg-success text-white rounded-circle d-flex align-items-center justify-content-center text-decoration-none shadow-lg whatsapp-btn" 
-       style="width: 60px; height: 60px; z-index: 1000; transition: transform 0.3s ease;"
+       class="position-fixed bottom-0 end-0 m-4 whatsapp-btn text-decoration-none" 
        target="_blank"
        rel="noopener noreferrer"
        aria-label="WhatsApp ile iletişime geç">
-        <i class="bi bi-whatsapp fs-3"></i>
+        <i class="bi bi-whatsapp"></i>
     </a>
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Animation Styles -->
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNavbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
+        });
+
+        // Handle hash on page load (when coming from another page)
+        function scrollToHash() {
+            if (window.location.hash) {
+                const hash = window.location.hash;
+                const target = document.querySelector(hash);
+                if (target) {
+                    // Wait for page to fully load and images to render
+                    setTimeout(() => {
+                        const offsetTop = target.offsetTop - 100;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                        // Update active nav link after scroll completes
+                        setTimeout(() => {
+                            updateActiveNavLink();
+                        }, 800);
+                    }, 300);
+                }
             }
         }
         
-        @keyframes zoomIn {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
+        // Also listen for hash changes (when clicking links)
+        window.addEventListener('hashchange', function() {
+            scrollToHash();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                // Only prevent default if it's a link on the same page
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                        // Update URL hash without triggering scroll
+                        history.pushState(null, null, href);
+                        // Update active nav link after scroll
+                        setTimeout(updateActiveNavLink, 500);
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in-up animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in-up elements
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Add delay to cards for staggered animation
+        document.querySelectorAll('.modern-card, .project-card, .feature-item').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Scroll Spy - Active navbar link based on scroll position
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link[data-section]');
+
+        function updateActiveNavLink() {
+            let current = '';
+            const scrollY = window.pageYOffset || window.scrollY;
+            const navbarHeight = 100;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - navbarHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollY >= sectionTop - 50 && scrollY < sectionTop + sectionHeight) {
+                    current = sectionId;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === current) {
+                    link.classList.add('active');
+                }
+            });
+
+            // If at top of page, make anasayfa active
+            if (scrollY < 150) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === 'anasayfa') {
+                        link.classList.add('active');
+                    }
+                });
+            }
         }
+
+        // Update on scroll
+        window.addEventListener('scroll', updateActiveNavLink);
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
+        // Update on page load
+        updateActiveNavLink();
         
-        .animate-fade-in {
-            animation: fadeIn 1s ease-out;
-        }
+        // Handle hash on page load
+        window.addEventListener('load', scrollToHash);
         
-        .animate-slide-up {
-            opacity: 0;
-            animation: slideUp 0.8s ease-out forwards;
+        // Also check on DOMContentLoaded in case page loads fast
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', scrollToHash);
+        } else {
+            scrollToHash();
         }
-        
-        .animate-bg {
-            animation: zoomIn 20s ease-in-out infinite alternate;
-        }
-        
-        .animate-pulse-hover:hover {
-            animation: pulse 1s ease-in-out infinite;
-        }
-        
-        .animate-card {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.3s ease;
-        }
-        
-        .animate-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .animate-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2) !important;
-        }
-        
-        .animate-img-zoom {
-            transition: transform 0.5s ease;
-        }
-        
-        .animate-card:hover .animate-img-zoom {
-            transform: scale(1.1);
-        }
-        
-        .animate-icon-rotate {
-            transition: transform 0.3s ease;
-        }
-        
-        .animate-card:hover .animate-icon-rotate {
-            transform: rotate(360deg) scale(1.1);
-        }
-        
-        .text-shadow {
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        /* WhatsApp Button Animation */
-        .whatsapp-btn {
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        .whatsapp-btn:hover {
-            animation: none;
-            transform: scale(1.1);
-        }
-        
-        /* Gallery Hover Animation */
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 0.375rem;
-        }
-        
-        .gallery-item img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
-        }
-        
-        /* Section Title Animation */
-        .section-title {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .section-title.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Form Input Focus Animation */
-        .form-control:focus, .form-select:focus {
-            transform: scale(1.02);
-            transition: transform 0.2s ease;
-        }
-        
-        /* Button Hover Animation */
-        .btn:hover {
-            transform: translateY(-2px);
-            transition: transform 0.2s ease;
-        }
-        
-        .btn:active {
-            transform: translateY(0);
-        }
-    </style>
-    
-    <script src="script.js"></script>
+    </script>
 </body>
 </html>

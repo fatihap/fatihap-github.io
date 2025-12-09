@@ -4,25 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Favicon - Must be first -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    
     <!-- Primary Meta Tags -->
-    <title>Projelerimiz | Sağlam Konteyner - Prefabrik Konteyner Projeleri Galerisi</title>
-    <meta name="title" content="Projelerimiz | Sağlam Konteyner - Prefabrik Konteyner Projeleri Galerisi">
-    <meta name="description" content="Sağlam Konteyner'in gerçekleştirdiği prefabrik konteyner projeleri. Ofis konteyner, şantiye konteyner, yaşam konteynerleri projelerimizi inceleyin. İstanbul ve Türkiye genelinde başarılı projeler.">
+    <title>Projelerimiz | Blok Konteyner - Prefabrik Konteyner Projeleri Galerisi</title>
+    <meta name="title" content="Projelerimiz | Blok Konteyner - Prefabrik Konteyner Projeleri Galerisi">
+    <meta name="description" content="Blok Konteyner'in gerçekleştirdiği prefabrik konteyner projeleri. Ofis konteyner, şantiye konteyner, yaşam konteynerleri projelerimizi inceleyin. İstanbul ve Türkiye genelinde başarılı projeler.">
     <meta name="keywords" content="konteyner projeleri, prefabrik konteyner projeleri, ofis konteyner projeleri, şantiye konteyner projeleri, yaşam konteyner projeleri, konteyner galeri, istanbul konteyner projeleri">
-    <meta name="author" content="Sağlam Konteyner">
+    <meta name="author" content="Blok Konteyner">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.saglamkonteyner.com/projeler.html">
-    <meta property="og:title" content="Projelerimiz | Sağlam Konteyner - Prefabrik Konteyner Projeleri">
+    <meta property="og:url" content="https://www.blokkonteyner.com/projeler.html">
+    <meta property="og:title" content="Projelerimiz | Blok Konteyner - Prefabrik Konteyner Projeleri">
     <meta property="og:description" content="Gerçekleştirdiğimiz başarılı prefabrik konteyner projeleri. Ofis, şantiye ve yaşam konteyner projelerimizi inceleyin.">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.saglamkonteyner.com/projeler.html">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230d6efd'%3E%3Cpath d='M2.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-13a.5.5 0 0 0-.5-.5h-11zm1 1h9v12h-9V2zm1 2v1h7V4h-7zm0 2v1h7V6h-7zm0 2v1h7V8h-7z'/%3E%3C/svg%3E">
+    <link rel="canonical" href="https://www.blokkonteyner.com/projeler.html">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,15 +35,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
     
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      "name": "Sağlam Konteyner Projeleri",
+      "name": "Blok Konteyner Projeleri",
       "description": "Prefabrik konteyner projeleri galerisi",
-      "url": "https://www.saglamkonteyner.com/projeler.html"
+      "url": "https://www.blokkonteyner.com/projeler.html"
     }
     </script>
     
@@ -48,9 +55,16 @@
         }
         
         :root {
-            --primary-color: #0d6efd;
-            --primary-dark: #0a58ca;
-            --secondary-color: #6c757d;
+            --primary-color: #FFD700;
+            --primary-dark: #FFA500;
+            --primary-light: #FFE55C;
+            --secondary-color: #1a1a1a;
+            --secondary-dark: #000000;
+            --secondary-light: #2d2d2d;
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
+            --text-muted: #666666;
+            --border-color: rgba(255, 215, 0, 0.2);
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
             --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
             --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
@@ -63,82 +77,8 @@
             background: #f8f9fa;
         }
         
-        /* Modern Navbar */
-        .navbar {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95) !important;
-            transition: var(--transition);
-            padding: 1rem 0;
-        }
-        
-        .navbar.scrolled {
-            box-shadow: var(--shadow-md);
-            padding: 0.5rem 0;
-        }
-        
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-link {
-            font-weight: 500;
-            color: #333 !important;
-            margin: 0 0.5rem;
-            position: relative;
-            transition: var(--transition);
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%) scaleX(0);
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            transition: var(--transition);
-        }
-        
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            transform: translateX(-50%) scaleX(1);
-            width: 80%;
-        }
-        
-        .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
-        
-        /* Page Header */
-        .page-header {
-            padding: 150px 0 80px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
-        
-        .page-header h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
+        /* Navbar styles are in style.css */
+        /* Page Banner styles are in style.css */
         
         /* Project Section */
         .project-section {
@@ -305,22 +245,7 @@
             box-shadow: var(--shadow-lg);
         }
         
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-        }
-        
-        .footer-link {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-block;
-        }
-        
-        .footer-link:hover {
-            color: white;
-            transform: translateX(5px);
-        }
+        /* Footer styles are in style.css */
         
         .social-icon {
             width: 45px;
@@ -400,33 +325,18 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNavbar">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="bi bi-box-seam me-2"></i>Sağlam Konteyner
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Menüyü aç/kapat">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html#anasayfa">Anasayfa</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#hizmetler">Hizmetlerimiz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#hakkimizda">Hakkımızda</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="projeler.html">Projelerimiz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html#iletisim">İletişim</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Navbar Container - Loaded dynamically -->
+    <div id="navbar-container"></div>
 
-    <!-- Page Header -->
-    <section class="page-header text-white">
-        <div class="container position-relative">
-            <div class="text-center">
-                <h1 class="mb-3">Projelerimiz</h1>
-                <p class="lead fs-4 mb-0" style="opacity: 0.95;">Gerçekleştirdiğimiz başarılı prefabrik konteyner projeleri galerisi</p>
+    <!-- Page Banner -->
+    <section class="page-banner text-white pt-5 pb-4 d-flex align-items-center">
+        <div class="page-banner-bg"></div>
+        <div class="container page-banner-content">
+            <div class="row align-items-center">
+                <div class="col-lg-10 mx-auto text-center">
+                    <h1>Projelerimiz</h1>
+                    <p class="mb-0">Gerçekleştirdiğimiz başarılı prefabrik konteyner projeleri galerisi</p>
+                </div>
             </div>
         </div>
     </section>
@@ -454,21 +364,21 @@
                 
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop" alt="Prefabrik Ofis Konteyner - Dış Görünüm" loading="lazy">
+                        <img src="images/konteyner1.jpg" alt="Prefabrik Ofis Konteyner - Dış Görünüm" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Dış Görünüm</h5>
                             <p>Modern ve şık dış tasarım</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=600&fit=crop" alt="Prefabrik Ofis Konteyner - İç Mekan" loading="lazy">
+                        <img src="images/konteyner2.jpg" alt="Prefabrik Ofis Konteyner - İç Mekan" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>İç Mekan</h5>
                             <p>Konforlu ve fonksiyonel iç tasarım</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=600&fit=crop" alt="Prefabrik Ofis Konteyner - Elektrik Tesisatı" loading="lazy">
+                        <img src="images/konteyner3.jpg" alt="Prefabrik Ofis Konteyner - Elektrik Tesisatı" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Elektrik Tesisatı</h5>
                             <p>Profesyonel elektrik kurulumu</p>
@@ -497,21 +407,21 @@
                 
                 <div class="gallery-grid">
                     <div class="gallery-item gallery-item-large">
-                        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&h=800&fit=crop" alt="Şantiye Konteyner - Genel Görünüm" loading="lazy">
+                        <img src="images/konteyner4.jpg" alt="Şantiye Konteyner - Genel Görünüm" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Genel Görünüm</h5>
                             <p>Büyük ölçekli şantiye konteyner kompleksi</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&h=600&fit=crop" alt="Şantiye Konteyner - Ofis Bölümü" loading="lazy">
+                        <img src="images/konteyner5.jpg" alt="Şantiye Konteyner - Ofis Bölümü" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Ofis Bölümü</h5>
                             <p>Profesyonel ofis alanı</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&h=600&fit=crop" alt="Şantiye Konteyner - Yatakhane" loading="lazy">
+                        <img src="images/konteyner6.jpg" alt="Şantiye Konteyner - Yatakhane" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Yatakhane</h5>
                             <p>Konforlu yatakhane alanı</p>
@@ -540,21 +450,21 @@
                 
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop" alt="Yaşam Konteyner - Dış Görünüm" loading="lazy">
+                        <img src="images/konteyner7.jpg" alt="Yaşam Konteyner - Dış Görünüm" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Dış Görünüm</h5>
                             <p>Doğa ile uyumlu tasarım</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=600&fit=crop" alt="Yaşam Konteyner - Oturma Odası" loading="lazy">
+                        <img src="images/konteyner1.jpg" alt="Yaşam Konteyner - Oturma Odası" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Oturma Odası</h5>
                             <p>Rahat ve konforlu yaşam alanı</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=600&fit=crop" alt="Yaşam Konteyner - Mutfak" loading="lazy">
+                        <img src="images/konteyner2.jpg" alt="Yaşam Konteyner - Mutfak" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Mutfak</h5>
                             <p>Modern mutfak donanımı</p>
@@ -583,21 +493,21 @@
                 
                 <div class="gallery-grid">
                     <div class="gallery-item gallery-item-large">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=800&fit=crop" alt="Yatakhane Konteyner - Genel Görünüm" loading="lazy">
+                        <img src="images/konteyner3.jpg" alt="Yatakhane Konteyner - Genel Görünüm" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Genel Görünüm</h5>
                             <p>Geniş ve ferah yatakhane alanı</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop" alt="Yatakhane Konteyner - Yatak Odası" loading="lazy">
+                        <img src="images/konteyner4.jpg" alt="Yatakhane Konteyner - Yatak Odası" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Yatak Odası</h5>
                             <p>Rahat yatak alanları</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop" alt="Yatakhane Konteyner - WC ve Duş" loading="lazy">
+                        <img src="images/konteyner5.jpg" alt="Yatakhane Konteyner - WC ve Duş" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>WC ve Duş</h5>
                             <p>Modern hijyen alanları</p>
@@ -626,21 +536,21 @@
                 
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop" alt="Konteyner Tamir - Öncesi" loading="lazy">
+                        <img src="images/konteyner6.jpg" alt="Konteyner Tamir - Öncesi" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Öncesi - Hasarlı Durum</h5>
                             <p>Tamir öncesi görünüm</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop" alt="Konteyner Tamir - Tamir Aşaması" loading="lazy">
+                        <img src="images/konteyner7.jpg" alt="Konteyner Tamir - Tamir Aşaması" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Tamir Aşaması</h5>
                             <p>Profesyonel tamir süreci</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop" alt="Konteyner Tamir - Sonrası" loading="lazy">
+                        <img src="images/konteyner1.jpg" alt="Konteyner Tamir - Sonrası" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Sonrası - Yeni Gibi</h5>
                             <p>Tamir sonrası mükemmel görünüm</p>
@@ -669,21 +579,21 @@
                 
                 <div class="gallery-grid">
                     <div class="gallery-item gallery-item-large">
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop" alt="Konteyner Nakliye - Yükleme" loading="lazy">
+                        <img src="images/konteyner2.jpg" alt="Konteyner Nakliye - Yükleme" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Yükleme İşlemi</h5>
                             <p>Profesyonel yükleme süreci</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop" alt="Konteyner Nakliye - Taşıma" loading="lazy">
+                        <img src="images/konteyner3.jpg" alt="Konteyner Nakliye - Taşıma" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Güvenli Taşıma</h5>
                             <p>Özel ekipmanlar ile taşıma</p>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop" alt="Konteyner Nakliye - Kurulum" loading="lazy">
+                        <img src="images/konteyner4.jpg" alt="Konteyner Nakliye - Kurulum" loading="lazy">
                         <div class="gallery-overlay">
                             <h5>Kurulum</h5>
                             <p>Hızlı ve profesyonel montaj</p>
@@ -704,7 +614,7 @@
                     <a href="index.html#iletisim" class="btn btn-light btn-modern">
                         <i class="bi bi-telephone me-2"></i>Hemen Arayın
                     </a>
-                    <a href="https://wa.me/905551234567?text=Merhaba,%20proje%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="btn btn-success btn-modern">
+                    <a href="https://wa.me/905448694658?text=Merhaba,%20proje%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="btn btn-success btn-modern">
                         <i class="bi bi-whatsapp me-2"></i>WhatsApp
                     </a>
                 </div>
@@ -713,101 +623,11 @@
     </section>
 
     <!-- Footer -->
-    <footer class="text-white py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h5 class="fw-bold mb-3" style="font-size: 1.5rem;">
-                        <i class="bi bi-box-seam me-2"></i>Sağlam Konteyner
-                    </h5>
-                    <p class="mb-4" style="opacity: 0.9; line-height: 1.8; font-size: 1rem;">
-                        Prefabrik konteyner, ofis konteyner, şantiye konteyner alım satım, tamir ve nakliye hizmetlerinde güvenilir çözüm ortağınız.
-                    </p>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="social-icon" aria-label="Facebook">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Instagram">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="Twitter">
-                            <i class="bi bi-twitter"></i>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="LinkedIn">
-                            <i class="bi bi-linkedin"></i>
-                        </a>
-                        <a href="#" class="social-icon" aria-label="WhatsApp">
-                            <i class="bi bi-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h5 class="fw-bold mb-3">Hızlı Linkler</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <a href="index.html#anasayfa" class="footer-link">
-                                <i class="bi bi-chevron-right me-2 small"></i>Anasayfa
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="index.html#hizmetler" class="footer-link">
-                                <i class="bi bi-chevron-right me-2 small"></i>Hizmetlerimiz
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="index.html#hakkimizda" class="footer-link">
-                                <i class="bi bi-chevron-right me-2 small"></i>Hakkımızda
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="projeler.html" class="footer-link">
-                                <i class="bi bi-chevron-right me-2 small"></i>Projelerimiz
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="index.html#iletisim" class="footer-link">
-                                <i class="bi bi-chevron-right me-2 small"></i>İletişim
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-4">
-                    <h5 class="fw-bold mb-3">Hizmetlerimiz</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <a href="index.html#hizmetler" class="footer-link">Konteyner Alım Satım</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="index.html#hizmetler" class="footer-link">Konteyner Tamiri</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="index.html#hizmetler" class="footer-link">Konteyner Nakliyesi</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="index.html#hizmetler" class="footer-link">Yaşam Konteynerleri</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="index.html#hizmetler" class="footer-link">Şantiye Konteynerleri</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="index.html#hizmetler" class="footer-link">Konteyner Kiralama</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="text-center pt-4 mt-4" style="border-top: 1px solid rgba(255,255,255,0.2);">
-                <p class="mb-0" style="opacity: 0.8;">
-                    &copy; 2024 Sağlam Konteyner. Tüm hakları saklıdır.
-                </p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Container - Loaded dynamically -->
+    <div id="footer-container"></div>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/905551234567?text=Merhaba,%20prefabrik%20konteyner%20hakkında%20bilgi%20almak%20istiyorum." 
+    <a href="https://wa.me/905448694658?text=Merhaba,%20prefabrik%20konteyner%20hakkında%20bilgi%20almak%20istiyorum." 
        class="position-fixed bottom-0 end-0 m-4 whatsapp-btn text-decoration-none" 
        target="_blank"
        rel="noopener noreferrer"
@@ -817,16 +637,54 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Navbar Loader -->
+    <script src="navbar.js"></script>
+    <!-- Footer Loader -->
+    <script src="footer.js"></script>
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('mainNavbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+
+        // Navbar scroll effect is handled by navbar.js
+        
+        // Handle cross-page navigation (index.html#section links)
+        document.querySelectorAll('a[href^="index.html#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const hash = href.split('#')[1];
+                
+                // Navigate to index.html with hash
+                window.location.href = `index.html#${hash}`;
+            });
         });
+        
+        // Handle hash on page load (when coming from another page)
+        function scrollToHash() {
+            if (window.location.hash) {
+                const hash = window.location.hash;
+                const target = document.querySelector(hash);
+                if (target) {
+                    setTimeout(() => {
+                        const offsetTop = target.offsetTop - 100;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }, 300);
+                }
+            }
+        }
+        
+        // Listen for hash changes
+        window.addEventListener('hashchange', function() {
+            scrollToHash();
+        });
+        
+        // Handle hash on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', scrollToHash);
+        } else {
+            scrollToHash();
+        }
         
         // Smooth scroll for anchor links (only on current page)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
